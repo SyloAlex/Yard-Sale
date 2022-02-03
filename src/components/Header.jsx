@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import '@styles/Header.scss';
+import Menu from './Menu';
+import AppContext from '../context/AppContext';
 import menu from "@icons/icon_menu.svg";
 import yard_logo from "@logos/logo_yard_sale.svg";
 import cart from "@icons/icon_shopping_cart.svg";
 
 const Header = () => {
+	const [toggleMenu, setToggleMenu] = useState(false);
+	const { state } = useContext(AppContext);
+	const handleToggleMenu = () => {
+		setToggleMenu(prevState => !prevState);
+	}
+
 	return (
 		<nav>
 			<img src={menu} alt="menu" className="menu" />
@@ -33,13 +41,19 @@ const Header = () => {
 			</div>
 			<div className="navbar-right">
 				<ul>
-					<li className="navbar-email">platzi@example.com</li>
+					<li 
+						className="navbar-email" 
+						onClick={handleToggleMenu}
+					>
+							platzi@example.com
+					</li>
 					<li className="navbar-shopping-cart">
 						<img src={cart} alt="shopping cart" />
-						<div>2</div>
+						{state.cart.length > 0 ? <div>{state.cart.length}</div> : null}
 					</li>
 				</ul>
 			</div>
+			{toggleMenu ? <Menu /> : null}
 		</nav>
 	);
 }
