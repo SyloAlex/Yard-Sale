@@ -6,21 +6,26 @@ import menu from "@icons/icon_menu.svg";
 import MyOrder from '../containers/MyOrder'
 import yard_logo from "@logos/logo_yard_sale.svg";
 import cart from "@icons/icon_shopping_cart.svg";
+import MobileMenu from './MobileMenu';
 
 const Header = () => {
 	const [toggleMenu, setToggleMenu] = useState(false);
-	const [toggleOrder, setToggleOtder] = useState(false);
+	const [toggleOrder, setToggleOrder] = useState(false);
+	const [toggleMobileMenu, setToggleMobileMenu] = useState(false);
 	const { state } = useContext(AppContext);
 	const handleToggleMenu = () => {
 		setToggleMenu(prevState => !prevState);
 	};
 	const handleToggleOrders = () => {
-		setToggleOtder(prevState => !prevState);
+		setToggleOrder(prevState => !prevState);
+	};
+	const handleToggleMobileMenu = () => {
+		setToggleMobileMenu(prevState => !prevState);
 	};
 
 	return (
 		<nav>
-			<img src={menu} alt="menu" className="menu" />
+			<img onClick={handleToggleMobileMenu} src={menu} alt="menu" className="menu" />
 			<div className="navbar-left">
 				<img src={yard_logo} alt="logo" className="nav-logo" />
 				<ul>
@@ -59,7 +64,8 @@ const Header = () => {
 				</ul>
 			</div>
 			{toggleMenu ? <Menu /> : null}
-			{toggleOrder ? <MyOrder /> : null}
+			{toggleOrder ? <MyOrder toggle={handleToggleOrders}/> : null}
+			{toggleMobileMenu ? <MobileMenu /> : null}
 		</nav>
 	);
 }

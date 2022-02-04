@@ -1,0 +1,43 @@
+@import "vars";
+
+.mobile-menu {
+  padding: 24px;
+  position: absolute;
+  top: 60px;
+  background-color: white;
+  left: 0;
+  right: 0;
+}
+
+.mobile-menu a {
+  text-decoration: none;
+  color: var(--black);
+  font-size: bold;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  display: inline-block;
+}
+
+.mobile-menu ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.mobile-menu div {
+  margin-bottom: 64px;
+}
+
+.mobile-menu .email {
+  font-size: var(--sm);
+  font-weight: 300;
+  margin-bottom: 0;
+}
+
+.mobile-menu .signout {
+  color: var(--hospital-green);
+  font-size: var(--sm);
+}
+
+@media (max-width: 640px) {
+}
